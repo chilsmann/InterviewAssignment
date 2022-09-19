@@ -15,8 +15,11 @@ public class AssignmentUtil {
             line = readFile.nextLine();
             if(!line.equals("")){
                 String[] arraySplit = line.split("\",\"");
-                arraySplit.toString();
-                recordList.add(new Record(arraySplit[0].toString().substring(1),arraySplit[1].toString(),arraySplit[2].toString().replaceAll("[,.]", "").trim()+" "+arraySplit[3].toString()+", "+arraySplit[4].toString(),Integer.parseInt(arraySplit[5].substring(0,arraySplit[5].length()-1))));
+                if(!arraySplit[2].toString().replaceAll("[,.]", "").trim().equals("")) {
+                    recordList.add(new Record(arraySplit[0].toString().substring(1), arraySplit[1].toString(), arraySplit[2].toString().replaceAll("[,.]", "").trim() + " " + arraySplit[3].toString() + ", " + arraySplit[4].toString(), Integer.parseInt(arraySplit[5].substring(0, arraySplit[5].length() - 1))));
+                }
+                else // if address field is empty, output warning to console that record will not be counted
+                    System.out.println("WARNING: Address field is empty. Record "+arraySplit[0].toString().substring(1)+" "+arraySplit[1].toString()+" will not be outputted!");
             }
             line = "";
         }
