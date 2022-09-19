@@ -13,7 +13,9 @@ public class Record implements Comparable<Record>{
         this.age = age;
     }
 
-
+    /*
+        getter and setter functions to access private fields.
+     */
     public String getFirstName() {
         return firstName;
     }
@@ -38,11 +40,18 @@ public class Record implements Comparable<Record>{
 
     public void setAge(int age){this.age = age;}
 
+    /*
+        Override the toString function to match the given requirement.
+     */
     @Override
     public String toString(){
        return (this.firstName+" "+ this.lastName+" "+ this.address+", "+this.age);
     }
 
+    /*
+        this compareTo Overrides the standard to check first the address, then last name if address is
+        equal and if last name is equal it compares based on first name.
+     */
     @Override
     public int compareTo(Record o) {
         int i = this.address.compareToIgnoreCase(o.address);

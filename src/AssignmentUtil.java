@@ -5,6 +5,14 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class AssignmentUtil {
+    /*
+        readFile function uses a scanner to read the file and takes each line and splits based on '","'. this
+        leaves one Qoutation on the 0th element and the -1 element, which gets trimmed and substringed when
+        the record gets created and added to the array list.
+
+        if the address field is empty, the record is discarded as it can not be attributed to a Household and
+        a warning message is outputted to the console.
+     */
     public static ArrayList<Record> readFile() throws FileNotFoundException {
         ArrayList<Record> recordList = new ArrayList<Record>();
         Scanner readFile = new Scanner(new FileReader("Input.txt"));
@@ -27,6 +35,15 @@ public class AssignmentUtil {
         return recordList;
     }
 
+    /*
+        outputAssignment function creates an output txt file and writes the output to the console.
+        The function takes the sorted arraylist of Records from Main function and uses a queue as
+        a fifo to group up records with the same household and get the count. From here it compares
+        the next record's address to see if it matches. If not, it will output the households (which
+        are already sorted based on the CompareTo in Record class) and prints/write-outs the output to file
+        and console. This continues until the end of the arrayList. The function also filters out records
+        where age is under 18.
+     */
     public static void outputAssignment(ArrayList<Record> recordList) throws IOException {
         File newFile = new File("output_"+System.currentTimeMillis()+".txt");
         FileWriter fw = new FileWriter(newFile);
